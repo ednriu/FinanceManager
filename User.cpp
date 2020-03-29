@@ -8,6 +8,10 @@
     {
         login = newLogin;
     };
+    void User::setPassword(string newPassword)
+    {
+        login = newPassword;
+    };
     void User::setName(string newName)
     {
         name = newName;
@@ -23,6 +27,10 @@
     string User::getLogin()
     {
         return login;
+    };
+    string User::getPassword()
+    {
+        return password;
     };
     string User::getName()
     {

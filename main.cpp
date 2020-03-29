@@ -6,6 +6,9 @@ using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    UserManager userManager;
+    userManager.addUser();
+
+    //cout << "Hello world!" << endl;
     return 0;
 }
