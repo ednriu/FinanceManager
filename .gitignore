@@ -32,4 +32,5 @@
 *.depend
 /bin
 /obj
+*.xml
 

@@ -1,5 +1,6 @@
 #include "UserManager.h"
 
+
 void UserManager::setIdOfLoggedUser(int newIdOfLoggedUser)
 {
     idOfLoggedUser = newIdOfLoggedUser;
@@ -11,22 +12,25 @@ int UserManager::getIdOfLoggedUser()
 void UserManager::addUser()
 {
     User IndividualUserData;
+    UserFile userFile;
     string lineOfData;
 
     system("cls");
-    cout <<"Login:"<<endl;
+    cout <<"Login:";
     cin >> lineOfData;
     IndividualUserData.setLogin(lineOfData);
-    cout <<"Haslo:"<<endl;
+    cout << endl <<"Haslo:";
     cin >> lineOfData;
     IndividualUserData.setPassword(lineOfData);
-    cout <<"Imie:"<<endl;
+    cout <<endl<<"Imie:";
     cin >> lineOfData;
     IndividualUserData.setName(lineOfData);
-    cout <<"Nazwisko:"<<endl;
+    cout <<endl<<"Nazwisko:";
     cin>>lineOfData;
     IndividualUserData.setSurname(lineOfData);
 
     users.push_back(IndividualUserData);
+
+
 };
 
