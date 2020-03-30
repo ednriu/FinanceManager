@@ -6,9 +6,9 @@ using namespace std;
 
 int main()
 {
-    UserManager userManager;
+    UserManager userManager("Users.xml");
     userManager.addUser();
 
-    //cout << "Hello world!" << endl;
+
     return 0;
 }

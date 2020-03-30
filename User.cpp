@@ -10,7 +10,7 @@
     };
     void User::setPassword(string newPassword)
     {
-        login = newPassword;
+        password = newPassword;
     };
     void User::setName(string newName)
     {

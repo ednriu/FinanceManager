@@ -12,13 +12,19 @@ class UserManager
 {
     vector<User> users;
     int idOfLoggedUser;
+    const string USER_FILE_NAME;
 
 
 
 public:
+    UserManager(string userFileName):USER_FILE_NAME(userFileName)
+    {
+        readUsersFromFile();
+    };
     void setIdOfLoggedUser(int newIdOfLoggedUser);
     int getIdOfLoggedUser();
     void addUser();
+    void readUsersFromFile();
 };
 
 

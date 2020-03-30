@@ -30,7 +30,11 @@ void UserManager::addUser()
     IndividualUserData.setSurname(lineOfData);
 
     users.push_back(IndividualUserData);
+    userFile.saveXML(users, USER_FILE_NAME);
+};
 
-
+void UserManager::readUsersFromFile()
+{
+    cout <<"Wczytuje Plik"<<endl;
 };
 

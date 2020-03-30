@@ -1,16 +1,23 @@
 #include "userfile.h"
 
-void UserFile::saveXML()
+void UserFile::saveXML(vector<User> users, string FileName)
 {
     CMarkup xml;
-    xml.AddElem( "ORDER" );
+    xml.AddElem( "USERS" );
     xml.IntoElem();
-    xml.AddElem( "ITEM" );
+    xml.AddElem( "1" );
     xml.IntoElem();
-    xml.AddElem( "SN", "132487A-J" );
-    xml.AddElem( "NAME", "crank casing" );
-    xml.AddElem( "QTY", "1" );
-    xml.Save( "F:\NaukaCPP\FinanceManager\Sample.xml" );
+
+    for(vector <User> :: iterator it = users.begin(); it != users.end(); ++it)
+    {
+        xml.AddElem( "LOGIN", (*it).getLogin());
+        xml.AddElem( "PASSWORD", (*it).getPassword());
+        xml.AddElem( "NAME", (*it).getName());
+        xml.AddElem( "SURNAME", (*it).getSurname());
+    }
+
+    xml.Save( "E:\\NaukaCPP\\FinanceManager\\" + FileName);
     cout << "koniec" <<endl;
 };
+
 
