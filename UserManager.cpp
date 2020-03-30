@@ -15,7 +15,14 @@ void UserManager::addUser()
     UserFile userFile;
     string lineOfData;
 
-    system("cls");
+    //wypisz wszystkich uzytkownikow
+    for(vector <User> :: iterator it = users.begin(); it != users.end(); ++it)
+    {
+        cout << (*it).getId()<<" "<< (*it).getName()<<" "<< (*it).getSurname()<<endl;
+    }
+    //koniec wypisz wszystkic uzytkownikow
+
+
     cout <<"Login:";
     cin >> lineOfData;
     IndividualUserData.setLogin(lineOfData);
@@ -28,13 +35,65 @@ void UserManager::addUser()
     cout <<endl<<"Nazwisko:";
     cin>>lineOfData;
     IndividualUserData.setSurname(lineOfData);
-
     users.push_back(IndividualUserData);
-    userFile.saveXML(users, USER_FILE_NAME);
+    userFile.saveXmlFromVector(users, USER_FILE_NAME);
 };
 
 void UserManager::readUsersFromFile()
 {
+    UserFile userFile;
+
+    users = userFile.loadXmlToVector(USER_FILE_NAME);
     cout <<"Wczytuje Plik"<<endl;
+};
+
+void UserManager::login()
+{
+    string lineOfData="";
+    string correctPassword="";
+    int correctId;
+    bool loginExists = false;
+
+    system("cls");
+    cout <<"Login:";
+    cin >> lineOfData;
+
+    for(vector <User> :: iterator it = users.begin(); it != users.end(); ++it)
+    {
+        if ((*it).getLogin() == lineOfData)
+        {
+            correctPassword = (*it).getPassword();
+            correctId = (*it).getId();
+            cout <<"OK"<<endl;
+            loginExists=true;
+            break;
+        }
+    }
+
+    if(loginExists)
+    {
+        lineOfData = "";
+        int count_down = 3;
+        while((lineOfData!=correctPassword) && (count_down>0))
+        {
+            cout<<endl<<"Haslo:";
+            cin >> lineOfData;
+            if (lineOfData==correctPassword)
+            {
+                cout <<"Zalogowales sie"<<endl;
+                idOfLoggedUser = correctId;
+                break;
+            }
+            count_down--;
+        }
+
+        if (count_down==0)
+            cout<<"Przekroczona liczba prob."<<endl;
+    }
+    else if(!loginExists)
+    {
+        cout <<"Podales bledny Login"<<endl;
+    }
+
 };
 

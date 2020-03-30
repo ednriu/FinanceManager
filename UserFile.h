@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 
 #include "Markup.h"
 #include "User.h"
@@ -12,7 +13,8 @@ using namespace std;
 class UserFile
 {
 public:
-    void saveXML(vector<User> users, string FileName);
+    void saveXmlFromVector(vector<User> users, string FileName);
+    vector<User> loadXmlToVector(string FileName);
 };
 
 
