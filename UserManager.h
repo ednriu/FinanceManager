@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 
+
 #include "user.h"
 #include "UserFile.h"
 
@@ -23,16 +24,16 @@ public:
         readUsersFromFile();
         if (!users.empty())
         {
-            cout <<"niepusty"<<endl;
             vector <User> :: iterator it = prev(users.end());
-            cout << (*it).getId()<<endl;;
+            idOfLastUser = (*it).getId();
         }
     };
     void setIdOfLoggedUser(int newIdOfLoggedUser);
     int getIdOfLoggedUser();
-    void addUser();
+    void registration();
     void readUsersFromFile();
-    void login();
+    void logIn();
+    void logOut();
 };
 
 

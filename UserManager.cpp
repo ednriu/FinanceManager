@@ -9,33 +9,27 @@ int UserManager::getIdOfLoggedUser()
 {
     return idOfLoggedUser;
 };
-void UserManager::addUser()
+void UserManager::registration()
 {
-    User IndividualUserData;
+    User individualUserData;
     UserFile userFile;
     string lineOfData;
 
-    //wypisz wszystkich uzytkownikow
-    for(vector <User> :: iterator it = users.begin(); it != users.end(); ++it)
-    {
-        cout << (*it).getId()<<" "<< (*it).getName()<<" "<< (*it).getSurname()<<endl;
-    }
-    //koniec wypisz wszystkic uzytkownikow
-
-
+    individualUserData.setId(idOfLastUser+1);
     cout <<"Login:";
     cin >> lineOfData;
-    IndividualUserData.setLogin(lineOfData);
+    individualUserData.setLogin(lineOfData);
     cout << endl <<"Haslo:";
     cin >> lineOfData;
-    IndividualUserData.setPassword(lineOfData);
+    individualUserData.setPassword(lineOfData);
     cout <<endl<<"Imie:";
     cin >> lineOfData;
-    IndividualUserData.setName(lineOfData);
+    individualUserData.setName(lineOfData);
     cout <<endl<<"Nazwisko:";
     cin>>lineOfData;
-    IndividualUserData.setSurname(lineOfData);
-    users.push_back(IndividualUserData);
+    individualUserData.setSurname(lineOfData);
+    users.push_back(individualUserData);
+    idOfLastUser = idOfLastUser+1;
     userFile.saveXmlFromVector(users, USER_FILE_NAME);
 };
 
@@ -47,7 +41,7 @@ void UserManager::readUsersFromFile()
     cout <<"Wczytuje Plik"<<endl;
 };
 
-void UserManager::login()
+void UserManager::logIn()
 {
     string lineOfData="";
     string correctPassword="";
@@ -95,5 +89,10 @@ void UserManager::login()
         cout <<"Podales bledny Login"<<endl;
     }
 
+};
+
+void UserManager::logOut()
+{
+    idOfLoggedUser = 0;
 };
 

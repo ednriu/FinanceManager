@@ -4,7 +4,6 @@ void UserFile::saveXmlFromVector(vector<User> users, string FileName)
 {
     CMarkup xml;
 
-
     xml.AddElem( "USERS" );
     xml.IntoElem();
     for(vector <User> :: iterator it = users.begin(); it != users.end(); ++it)

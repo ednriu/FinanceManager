@@ -32,5 +32,6 @@
 *.depend
 /bin
 /obj
+/Dokumentacja
 *.xml
 *.layout
