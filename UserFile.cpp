@@ -19,7 +19,6 @@ void UserFile::saveXmlFromVector(vector<User> users, string FileName)
     }
     xml.OutOfElem();
     xml.Save("E:\\NaukaCPP\\FinanceManager\\" + FileName);
-    cout << "koniec" <<endl;
 };
 
 vector<User> UserFile::loadXmlToVector(string FileName)

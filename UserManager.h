@@ -16,6 +16,8 @@ class UserManager
     int idOfLastUser;
     const string USER_FILE_NAME;
 
+    bool doesLoginExist(string loginToBeChecked);
+
 public:
     UserManager(string userFileName):USER_FILE_NAME(userFileName)
     {
@@ -34,6 +36,7 @@ public:
     void readUsersFromFile();
     void logIn();
     void logOut();
+    void passwordChange();
 };
 
 

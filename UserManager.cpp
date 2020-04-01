@@ -18,14 +18,20 @@ void UserManager::registration()
     individualUserData.setId(idOfLastUser+1);
     cout <<"Login:";
     cin >> lineOfData;
+    while (doesLoginExist(lineOfData))
+    {
+        cout << "Podany login istnieje. Podaj jeszcze raz."<<endl;
+        cout <<"Login:";
+        cin >> lineOfData;
+    }
     individualUserData.setLogin(lineOfData);
-    cout << endl <<"Haslo:";
+    cout <<"Haslo:";
     cin >> lineOfData;
     individualUserData.setPassword(lineOfData);
-    cout <<endl<<"Imie:";
+    cout <<"Imie:";
     cin >> lineOfData;
     individualUserData.setName(lineOfData);
-    cout <<endl<<"Nazwisko:";
+    cout <<"Nazwisko:";
     cin>>lineOfData;
     individualUserData.setSurname(lineOfData);
     users.push_back(individualUserData);
@@ -36,9 +42,8 @@ void UserManager::registration()
 void UserManager::readUsersFromFile()
 {
     UserFile userFile;
-
     users = userFile.loadXmlToVector(USER_FILE_NAME);
-    cout <<"Wczytuje Plik"<<endl;
+    cout <<"Wczytano Plik z Uzytkownikami"<<endl;
 };
 
 void UserManager::logIn()
@@ -58,7 +63,6 @@ void UserManager::logIn()
         {
             correctPassword = (*it).getPassword();
             correctId = (*it).getId();
-            cout <<"OK"<<endl;
             loginExists=true;
             break;
         }
@@ -70,14 +74,21 @@ void UserManager::logIn()
         int count_down = 3;
         while((lineOfData!=correctPassword) && (count_down>0))
         {
-            cout<<endl<<"Haslo:";
+            cout<<"Haslo:";
             cin >> lineOfData;
             if (lineOfData==correctPassword)
             {
                 cout <<"Zalogowales sie"<<endl;
                 idOfLoggedUser = correctId;
+                system("pause");
                 break;
-            }
+            };
+
+            if (lineOfData!=correctPassword)
+            {
+                system("cls");
+                cout << "Haslo jest niepoprawne. Sprobuj jeszcze raz."<<endl;
+            };
             count_down--;
         }
 
@@ -86,7 +97,8 @@ void UserManager::logIn()
     }
     else if(!loginExists)
     {
-        cout <<"Podales bledny Login"<<endl;
+        cout <<"Podales bledny Login. Sprobuj jeszcze raz."<<endl;
+        system("pause");
     }
 
 };
@@ -94,5 +106,50 @@ void UserManager::logIn()
 void UserManager::logOut()
 {
     idOfLoggedUser = 0;
+};
+
+void UserManager::passwordChange()
+{
+    string newPassword;
+    UserFile userFile;
+
+    system("cls");
+    if (idOfLoggedUser!=0)
+    {
+        cout << "Nowe haslo:";
+        cin >> newPassword;
+
+        for(vector <User> :: iterator it = users.begin(); it != users.end(); ++it)
+        {
+            if ((*it).getId() == idOfLoggedUser)
+            {
+                (*it).setPassword(newPassword);
+                cout <<"Haslo zostalo zmienione"<<endl;
+                userFile.saveXmlFromVector(users, USER_FILE_NAME);
+                break;
+            }
+        }
+    }
+    else
+    if (idOfLoggedUser==0)
+    {
+        system("cls");
+        cout << "Jestes niezalogowany"<<endl;
+        system("Pause");
+    }
+
+};
+
+bool UserManager::doesLoginExist(string loginToBeChecked)
+{
+    for(vector <User> :: iterator it = users.begin(); it != users.end(); ++it)
+    {
+        if ((*it).getLogin() == loginToBeChecked)
+        {
+            cout <<"Login Istnieje:"<<endl;
+            return true;
+        }
+    }
+return false;
 };
 
