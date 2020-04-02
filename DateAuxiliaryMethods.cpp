@@ -7,11 +7,13 @@ bool DateAuxiliaryMethods::isLeapYear(int provideYear)
     return false;
 }
 
-int DateAuxiliaryMethods::convertStringToDataInteger(string provideDate)
+int DateAuxiliaryMethods::convertStringToDataInteger(string provideDate) //function provides date in Integer type. If the date format is wrong function returns 0
 {
     string year, month, day;
     int valueToBeReturned = 0;
     map < int, int > mapa;
+
+    if (verifyTheDate(provideDate)!=1) return 0; //if the string is incorrect function returns 0
 
     year = provideDate.substr(0,4);
     month = provideDate.substr(5,2);

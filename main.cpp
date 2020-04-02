@@ -2,18 +2,22 @@
 #include "User.h"
 #include "UserManager.h"
 #include "DateAuxiliaryMethods.h"
+#include "IncomeManager.h"
 
 using namespace std;
 
 int main()
 {
-    DateAuxiliaryMethods test;
+    IncomeManager test;
 
 
     UserManager userManager("Users.xml");
     //userManager.registration();
-    userManager.logIn();
+    //userManager.logIn();
     //userManager.passwordChange();
+
+    test.addIncome();
+
 
     return 0;
 }
