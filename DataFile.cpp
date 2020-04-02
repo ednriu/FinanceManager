@@ -21,7 +21,7 @@ void DataFile::saveXmlFromVector(vector<FinancialData> &anyData, string FileName
     xml.Save("E:\\NaukaCPP\\FinanceManager\\" + FileName+".xml");
 };
 
-vector<FinancialData> DataFile::loadXmlToVector(string FileName)
+vector<FinancialData> DataFile::loadXmlToVector(string FileName, int idOfLoggedUser, bool loadAllUsersData)
 {
     CMarkup xml;
     FinancialData individualFinancialRecord;
@@ -37,23 +37,54 @@ vector<FinancialData> DataFile::loadXmlToVector(string FileName)
     {
         xml.IntoElem();
 
-        xml.FindElem("ID");
-        individualFinancialRecord.setId(atoi(MCD_2PCSZ(xml.GetData())));
+        if (loadAllUsersData==false)
+        {
+            xml.FindElem( "USER_ID" );
+            while (atoi(MCD_2PCSZ(xml.GetData()))==idOfLoggedUser)
+            {
+                xml.FindElem("ID");
+                individualFinancialRecord.setId(atoi(MCD_2PCSZ(xml.GetData())));
 
-        xml.FindElem( "USER_ID" );
-        individualFinancialRecord.setUserId(atoi(MCD_2PCSZ(xml.GetData())));
+                xml.FindElem( "USER_ID" );
+                individualFinancialRecord.setUserId(atoi(MCD_2PCSZ(xml.GetData())));
 
-        xml.FindElem( "CATEGORY" );
-        individualFinancialRecord.setCategory(xml.GetData());
+                xml.FindElem( "CATEGORY" );
+                individualFinancialRecord.setCategory(xml.GetData());
 
-        xml.FindElem( "MONEY_AMMOUNT" );
-        individualFinancialRecord.setMoneyAmmount(atoi(MCD_2PCSZ(xml.GetData())));
+                xml.FindElem( "MONEY_AMMOUNT" );
+                individualFinancialRecord.setMoneyAmmount(atoi(MCD_2PCSZ(xml.GetData())));
 
-        xml.FindElem( "DATE" );
-        individualFinancialRecord.setDate(atoi(MCD_2PCSZ(xml.GetData())));
+                xml.FindElem( "DATE" );
+                individualFinancialRecord.setDate(atoi(MCD_2PCSZ(xml.GetData())));
+
+                anyData.push_back(individualFinancialRecord);
+            };
+        };
+
+        if (loadAllUsersData==true)
+        {
+            xml.FindElem("ID");
+            individualFinancialRecord.setId(atoi(MCD_2PCSZ(xml.GetData())));
+
+            xml.FindElem( "USER_ID" );
+            individualFinancialRecord.setUserId(atoi(MCD_2PCSZ(xml.GetData())));
+
+            xml.FindElem( "CATEGORY" );
+            individualFinancialRecord.setCategory(xml.GetData());
+
+            xml.FindElem( "MONEY_AMMOUNT" );
+            individualFinancialRecord.setMoneyAmmount(atoi(MCD_2PCSZ(xml.GetData())));
+
+            xml.FindElem( "DATE" );
+            individualFinancialRecord.setDate(atoi(MCD_2PCSZ(xml.GetData())));
+
+            anyData.push_back(individualFinancialRecord);
+        }
+
+
 
         xml.OutOfElem();
-        anyData.push_back(individualFinancialRecord);
+
     }
     return anyData;
 };

@@ -1,10 +1,17 @@
 #include "IncomeManager.h"
 
 
-void IncomeManager::readIncomesFromFile(string INCOME_FILE_NAME)
+void IncomeManager::readIncomesFromFileOfOneUser()
 {
     DataFile incomesFile;
-    incomes = incomesFile.loadXmlToVector(INCOME_FILE_NAME);
+    incomes = incomesFile.loadXmlToVector(INCOME_FILE_NAME, ID_OF_LOGGED_USER, false);
+    cout <<"Wczytano Plik z Dochodami"<<endl;
+};
+
+void IncomeManager::readAllIncomesFromFile()
+{
+    DataFile incomesFile;
+    incomes = incomesFile.loadXmlToVector(INCOME_FILE_NAME, ID_OF_LOGGED_USER, true);
     cout <<"Wczytano Plik z Dochodami"<<endl;
 };
 
@@ -15,17 +22,20 @@ void IncomeManager::addIncome()
     DateAuxiliaryMethods dateOperator;
     string dataReader;
 
+    readAllIncomesFromFile();
+
     system("cls");
     //dateInput();
     pieceOfData.setDate(dateInput());
     pieceOfData.setId(1234);
-    pieceOfData.setUserId(4321);
+    pieceOfData.setUserId(ID_OF_LOGGED_USER);
     pieceOfData.setCategory(categoryInput());
     pieceOfData.setMoneyAmmount(moneyInput());
 
     incomes.push_back(pieceOfData);
 
-    fileWithIncomes.saveXmlFromVector(incomes, "incomes");
+    fileWithIncomes.saveXmlFromVector(incomes, INCOME_FILE_NAME);
+    incomes.clear();
 }
 
 int IncomeManager::dateInput()
