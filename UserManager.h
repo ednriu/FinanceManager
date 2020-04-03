@@ -6,6 +6,8 @@
 
 #include "user.h"
 #include "UserFile.h"
+#include "AuxiliaryMethods.h"
+
 
 using namespace std;
 

@@ -1,7 +1,7 @@
 #include "IncomeManager.h"
 
 
-void IncomeManager::readIncomesFromFileOfOneUser()
+void IncomeManager::readIncomesFromFileOfLoggedUser()
 {
     DataFile incomesFile;
     incomes = incomesFile.loadXmlToVector(INCOME_FILE_NAME, ID_OF_LOGGED_USER, false);
@@ -25,8 +25,8 @@ void IncomeManager::addIncome()
     readAllIncomesFromFile();
 
     system("cls");
-    //dateInput();
-    pieceOfData.setDate(dateInput());
+    int dateTemp = dateInput();
+    pieceOfData.setDate(dateTemp);
     pieceOfData.setId(1234);
     pieceOfData.setUserId(ID_OF_LOGGED_USER);
     pieceOfData.setCategory(categoryInput());
@@ -44,7 +44,7 @@ int IncomeManager::dateInput()
     DateAuxiliaryMethods dateOperator;
     string dateReader;
 
-    cout <<"Dzien Dzisiejszy (d)"<<endl;
+    cout <<"Dzien Dzisiejszy (d)"<<", ";
     cout<< "Inna Data (i)"<<endl;
 
     switch(auxiliaryMethods.readKey())
@@ -87,38 +87,53 @@ string IncomeManager::categoryInput()
     return category;
 };
 
-void IncomeManager::getPLNfromInt(int moneyInt)
+float IncomeManager::getPLNfromInt(int moneyInt)
 {
     float moneyFloat;
     moneyFloat = ((float)moneyInt/100);
-    cout<<fixed;
-    cout << setprecision(2)<<moneyFloat;
+    return moneyFloat;
 };
-
+void IncomeManager::sortIncomesAccordingToDate()
+{
+    sort(incomes.begin(), incomes.end(), [](FinancialData& lhs, FinancialData& rhs) { //neecs attention: check why does not work with the Const
+      return lhs.getDate() < rhs.getDate();
+   });
+};
 void IncomeManager::showUsersIncomeWithinDataRange()
 {
     DateAuxiliaryMethods dateOperator;
+    readIncomesFromFileOfLoggedUser();
 
+    int date1 = dateInput();
+    int date2 = dateInput();
 
-    readIncomesFromFileOfOneUser(); //zmienic nazwe na ofLoggedUser
-
-    int date1 = dateOperator.provideDataOfFirstDayMonthBefore();
-    int date2 = dateOperator.provideDataofLastDayMonthBefore();
-
-    sort(incomes.begin(), incomes.end(), [](FinancialData& lhs, FinancialData& rhs) {
-      return lhs.getDate() < rhs.getDate();
-   });
+    sortIncomesAccordingToDate();
 
     for(vector <FinancialData> :: iterator it = incomes.begin(); it != incomes.end(); ++it)
         {
-           cout << dateOperator.convertDataIntegerToString((*it).getDate());
-           cout <<" -> ";
-           cout << (*it).getCategory();
-           cout<<" -> ";
-           getPLNfromInt((*it).getMoneyAmmount());
-           cout<<"zl."<<endl;
+           if (((*it).getDate()>=date1)&&((*it).getDate()<=date2))
+           {
+                cout << dateOperator.convertDataIntegerToString((*it).getDate());
+                cout <<" -> ";
+                cout << (*it).getCategory();
+                cout<<" -> ";
+                cout << getPLNfromInt((*it).getMoneyAmmount());
+                cout<<"zl."<<endl;
+           }
         }
-
-
+    cout << fixed << setprecision(2)<<sumUpUserIncomesWithinDataRange(date1, date2)<<endl;
     incomes.clear();
+};
+
+float IncomeManager::sumUpUserIncomesWithinDataRange(int date1, int date2)
+{
+    float sumToBeReturned=0;;
+    DateAuxiliaryMethods dateOperator;
+
+    for(vector <FinancialData> :: iterator it = incomes.begin(); it != incomes.end(); ++it)
+        {
+            if (((*it).getDate()>=date1)&&((*it).getDate()<=date2)) sumToBeReturned = sumToBeReturned+getPLNfromInt((*it).getMoneyAmmount());
+        };
+
+    return sumToBeReturned;
 };

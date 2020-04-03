@@ -3,13 +3,19 @@
 
 #include <iostream>
 
+#include "UserManager.h"
+
 using namespace std;
 
 class FinanceManager
 {
     UserManager userManager;
+public:
+    FinanceManager(string userFileName):userManager(userFileName){};
+    void toRegisterUser();
+    void toLogUserIn();
+    bool isUserLoggedIn();
 
-    userManager.readUsersFromFile();
 };
 
 

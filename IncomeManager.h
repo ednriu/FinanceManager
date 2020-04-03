@@ -19,7 +19,10 @@ class IncomeManager
     int dateInput();
     int moneyInput();
     string categoryInput();
-    void getPLNfromInt(int moneyInt);
+    float getPLNfromInt(int moneyInt);
+    void sortIncomesAccordingToDate();
+    float sumUpUserIncomesWithinDataRange(int date1, int date2);
+
 public:
     IncomeManager()
     {
@@ -29,9 +32,10 @@ public:
         }*/
     };
     void readAllIncomesFromFile();
-    void readIncomesFromFileOfOneUser();
+    void readIncomesFromFileOfLoggedUser();
     void addIncome();
     void showUsersIncomeWithinDataRange();
+
 };
 
 #endif // INCOMEMANAGER_H_INCLUDED

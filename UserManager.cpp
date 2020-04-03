@@ -13,9 +13,12 @@ void UserManager::registration()
 {
     User individualUserData;
     UserFile userFile;
+    AuxiliaryMethods auxiliaryMethods;
     string lineOfData;
 
     individualUserData.setId(idOfLastUser+1);
+    system("cls");
+    auxiliaryMethods.printHeader("Rejestracja Uzytkownika");
     cout <<"Login:";
     cin >> lineOfData;
     while (doesLoginExist(lineOfData))
@@ -52,8 +55,10 @@ void UserManager::logIn()
     string correctPassword="";
     int correctId;
     bool loginExists = false;
+    AuxiliaryMethods auxiliaryMethods;
 
     system("cls");
+    auxiliaryMethods.printHeader("Logowanie");
     cout <<"Login:";
     cin >> lineOfData;
 
