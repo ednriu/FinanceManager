@@ -9,6 +9,10 @@ void FinanceManager::toRegisterUser()
 void FinanceManager::toLogUserIn()
 {
     userManager.logIn();
+    if (userManager.getIdOfLoggedUser()!=0)
+    {
+        incomeManager = new IncomeManager(userManager.getIdOfLoggedUser());
+    };
 };
 
 bool FinanceManager::isUserLoggedIn()
@@ -17,3 +21,19 @@ bool FinanceManager::isUserLoggedIn()
     if(userManager.getIdOfLoggedUser()!=0) return true;
 };
 
+void FinanceManager::toChangePassword()
+{
+    userManager.passwordChange();
+};
+
+void FinanceManager::toLogUserOut()
+{
+    userManager.logOut();
+    delete incomeManager;
+    incomeManager = NULL;
+};
+
+void FinanceManager::toAddIncome()
+{
+    incomeManager -> addIncome();
+};

@@ -117,10 +117,12 @@ void UserManager::passwordChange()
 {
     string newPassword;
     UserFile userFile;
+    AuxiliaryMethods auxiliaryMethods;
 
     system("cls");
     if (idOfLoggedUser!=0)
     {
+        auxiliaryMethods.printHeader("Zmiana Hasla");
         cout << "Nowe haslo:";
         cin >> newPassword;
 
@@ -131,6 +133,7 @@ void UserManager::passwordChange()
                 (*it).setPassword(newPassword);
                 cout <<"Haslo zostalo zmienione"<<endl;
                 userFile.saveXmlFromVector(users, USER_FILE_NAME);
+                system("pause");
                 break;
             }
         }

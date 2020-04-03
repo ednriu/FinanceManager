@@ -14,7 +14,7 @@ using namespace std;
 class IncomeManager
 {
     const string INCOME_FILE_NAME = "Incomes";
-    const int ID_OF_LOGGED_USER = 2;
+    const int ID_OF_LOGGED_USER;
     vector<FinancialData> incomes;
     int dateInput();
     int moneyInput();
@@ -22,17 +22,18 @@ class IncomeManager
     float getPLNfromInt(int moneyInt);
     void sortIncomesAccordingToDate();
     float sumUpUserIncomesWithinDataRange(int date1, int date2);
+    void readAllIncomesFromFile();
+    void readIncomesFromFileOfLoggedUser();
 
 public:
-    IncomeManager()
+    IncomeManager(int id_of_logged_user):ID_OF_LOGGED_USER(id_of_logged_user)
     {
         /*for(vector <FinancialData> :: iterator it = incomes.begin(); it != incomes.end(); ++it)
         {
            cout << (*it).getCategory()<<endl;
         }*/
     };
-    void readAllIncomesFromFile();
-    void readIncomesFromFileOfLoggedUser();
+
     void addIncome();
     void showUsersIncomeWithinDataRange();
 

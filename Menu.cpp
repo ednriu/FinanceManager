@@ -3,6 +3,7 @@
 char Menu::menuLoggedOut()
 {
     AuxiliaryMethods auxiliaryMethods;
+    system("cls");
     cout<<"Zaloguj (z)"<<endl;
     cout<<"Rejestracja (r)"<<endl;
     cout<<"Zakoncz (k)"<<endl;
@@ -11,12 +12,13 @@ char Menu::menuLoggedOut()
 char Menu::menuLoggedIn()
 {
     AuxiliaryMethods auxiliaryMethods;
-    cout << "Dodaj przychód"<<endl;
-    cout << "Dodaj wydatek"<<endl;
-    cout << "Bilans z bie¿¹cego miesi¹ca"<<endl;
-    cout << "Bilans z poprzedniego miesi¹ca"<<endl;
+    system("cls");
+    cout << "Dodaj przychÃ³d (p)"<<endl;
+    cout << "Dodaj wydatek (w)"<<endl;
+    cout << "Bilans z bieÅ¼Ä…cego miesiÄ…ca"<<endl;
+    cout << "Bilans z poprzedniego miesiÄ…ca"<<endl;
     cout << "Bilans z wybranego okresu"<<endl;
-    cout << "Zmien has³o"<<endl;
-    cout << "Wyloguj siê"<<endl;
+    cout << "Zmien haslo (h)"<<endl;
+    cout << "Wyloguj siÃª (k)"<<endl;
     return auxiliaryMethods.readKey();
 };

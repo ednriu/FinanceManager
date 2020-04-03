@@ -20,21 +20,36 @@ int main()
             {
             case 'z' :
                 financeManager.toLogUserIn();
+                break;
             case 'r' :
                 financeManager.toRegisterUser();
+                break;
             case 'k' :
                 return 0;
             }
         }
         if (financeManager.isUserLoggedIn()==true)
-            menu.menuLoggedIn();
+            switch(menu.menuLoggedIn())
+            {
+            case 'p' :
+                financeManager.toAddIncome();
+                break;
+            case 'w' :
+                //financeManager.toRegisterUser();
+                break;
+            case 'h' :
+                financeManager.toChangePassword();
+                break;
+            case 'k' :
+                financeManager.toLogUserOut();
+                break;
+            }
     }
-    financeManager.toLogUserIn();
-    cout << financeManager.isUserLoggedIn();
+
     return 0;
 }
 
-int _main()
+/*int _main()
 {
     IncomeManager test;
 
@@ -49,4 +64,4 @@ int _main()
 
 
     return 0;
-}
+}*/
