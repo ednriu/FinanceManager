@@ -37,3 +37,22 @@ void FinanceManager::toAddIncome()
 {
     incomeManager -> addIncome();
 };
+
+int FinanceManager::showBalanceBetweenTwoDates()
+{
+    incomeManager -> showUsersIncomeWithinDataRange(0,0);
+};
+
+int FinanceManager::showBalanceForThatMonth()
+{
+    DateAuxiliaryMethods date1;
+    DateAuxiliaryMethods date2;
+    incomeManager ->showUsersIncomeWithinDataRange(date1.provideDataOfFirstDayThisMonth(), date2.provideDataOfToday());
+};
+
+int FinanceManager::showBalanceForLastMonth()
+{
+    DateAuxiliaryMethods date1;
+    DateAuxiliaryMethods date2;
+    incomeManager ->showUsersIncomeWithinDataRange(date1.provideDataOfFirstDayMonthBefore(), date2.provideDataofLastDayMonthBefore());
+};

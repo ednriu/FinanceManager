@@ -28,6 +28,9 @@ public:
     void toChangePassword();
     void toLogUserOut();
     void toAddIncome();
+    int showBalanceBetweenTwoDates();
+    int showBalanceForThatMonth();
+    int showBalanceForLastMonth();
 };
 
 

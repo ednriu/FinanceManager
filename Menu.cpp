@@ -15,9 +15,9 @@ char Menu::menuLoggedIn()
     system("cls");
     cout << "Dodaj przychód (p)"<<endl;
     cout << "Dodaj wydatek (w)"<<endl;
-    cout << "Bilans z bieżącego miesiąca"<<endl;
-    cout << "Bilans z poprzedniego miesiąca"<<endl;
-    cout << "Bilans z wybranego okresu"<<endl;
+    cout << "Bilans z bieżącego miesiąca (c)"<<endl;
+    cout << "Bilans z poprzedniego miesiąca (x)"<<endl;
+    cout << "Bilans z wybranego okresu (z)"<<endl;
     cout << "Zmien haslo (h)"<<endl;
     cout << "Wyloguj siê (k)"<<endl;
     return auxiliaryMethods.readKey();

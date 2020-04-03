@@ -43,6 +43,15 @@ int main()
             case 'k' :
                 financeManager.toLogUserOut();
                 break;
+            case 'c' :
+                financeManager.showBalanceForThatMonth();
+                break;
+            case 'x' :
+                financeManager.showBalanceForLastMonth();
+                break;
+            case 'z' :
+                financeManager.showBalanceBetweenTwoDates();
+                break;
             }
     }
 

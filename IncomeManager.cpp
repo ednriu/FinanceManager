@@ -99,13 +99,23 @@ void IncomeManager::sortIncomesAccordingToDate()
       return lhs.getDate() < rhs.getDate();
    });
 };
-void IncomeManager::showUsersIncomeWithinDataRange()
+void IncomeManager::showUsersIncomeWithinDataRange(int rangeLeft, int rangeRight)
 {
     DateAuxiliaryMethods dateOperator;
     readIncomesFromFileOfLoggedUser();
+    int date1, date2;
 
-    int date1 = dateInput();
-    int date2 = dateInput();
+    if ((rangeLeft==0) || (rangeRight==0))
+    {
+        date1 = dateInput();
+        date2 = dateInput();
+    }
+    else
+    {
+        date1 = rangeLeft;
+        date2 = rangeRight;
+    };
+
 
     sortIncomesAccordingToDate();
 
@@ -122,6 +132,7 @@ void IncomeManager::showUsersIncomeWithinDataRange()
            }
         }
     cout << fixed << setprecision(2)<<sumUpUserIncomesWithinDataRange(date1, date2)<<endl;
+    system("Pause");
     incomes.clear();
 };
 

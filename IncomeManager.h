@@ -35,7 +35,7 @@ public:
     };
 
     void addIncome();
-    void showUsersIncomeWithinDataRange();
+    void showUsersIncomeWithinDataRange(int date1, int date2);
 
 };
 
