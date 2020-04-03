@@ -15,7 +15,8 @@ int main()
     //userManager.registration();
     //userManager.logIn();
     //userManager.passwordChange();
-
+    test.showUsersIncomeWithinDataRange();
+    system("pause");
     test.addIncome();
 
 

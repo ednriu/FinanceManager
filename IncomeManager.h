@@ -1,6 +1,9 @@
 #ifndef INCOMEMANAGER_H_INCLUDED
 #define INCOMEMANAGER_H_INCLUDED
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iomanip>
 
 #include "DataFile.h"
 #include "DateAuxiliaryMethods.h"
@@ -16,6 +19,7 @@ class IncomeManager
     int dateInput();
     int moneyInput();
     string categoryInput();
+    void getPLNfromInt(int moneyInt);
 public:
     IncomeManager()
     {
@@ -27,6 +31,7 @@ public:
     void readAllIncomesFromFile();
     void readIncomesFromFileOfOneUser();
     void addIncome();
+    void showUsersIncomeWithinDataRange();
 };
 
 #endif // INCOMEMANAGER_H_INCLUDED

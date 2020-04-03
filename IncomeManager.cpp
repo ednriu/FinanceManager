@@ -81,7 +81,44 @@ string IncomeManager::categoryInput()
 {
     string category;
 
+    cin.ignore();
     cout<<"Kategoria:";
     getline(cin,category);
     return category;
+};
+
+void IncomeManager::getPLNfromInt(int moneyInt)
+{
+    float moneyFloat;
+    moneyFloat = ((float)moneyInt/100);
+    cout<<fixed;
+    cout << setprecision(2)<<moneyFloat;
+};
+
+void IncomeManager::showUsersIncomeWithinDataRange()
+{
+    DateAuxiliaryMethods dateOperator;
+
+
+    readIncomesFromFileOfOneUser(); //zmienic nazwe na ofLoggedUser
+
+    int date1 = dateOperator.provideDataOfFirstDayMonthBefore();
+    int date2 = dateOperator.provideDataofLastDayMonthBefore();
+
+    sort(incomes.begin(), incomes.end(), [](FinancialData& lhs, FinancialData& rhs) {
+      return lhs.getDate() < rhs.getDate();
+   });
+
+    for(vector <FinancialData> :: iterator it = incomes.begin(); it != incomes.end(); ++it)
+        {
+           cout << dateOperator.convertDataIntegerToString((*it).getDate());
+           cout <<" -> ";
+           cout << (*it).getCategory();
+           cout<<" -> ";
+           getPLNfromInt((*it).getMoneyAmmount());
+           cout<<"zl."<<endl;
+        }
+
+
+    incomes.clear();
 };
