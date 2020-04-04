@@ -24,15 +24,12 @@ class IncomeManager
     float sumUpUserIncomesWithinDataRange(int date1, int date2);
     void readAllIncomesFromFile();
     void readIncomesFromFileOfLoggedUser();
+    void theLoopCoutsIncomesWithinDates(int date1, int date2);
+    float replaceCommaWithDot(string text);
 
 public:
     IncomeManager(int id_of_logged_user):ID_OF_LOGGED_USER(id_of_logged_user)
-    {
-        /*for(vector <FinancialData> :: iterator it = incomes.begin(); it != incomes.end(); ++it)
-        {
-           cout << (*it).getCategory()<<endl;
-        }*/
-    };
+    {};
 
     void addIncome();
     void showUsersIncomeWithinDataRange(int date1, int date2);

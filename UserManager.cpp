@@ -161,3 +161,9 @@ bool UserManager::doesLoginExist(string loginToBeChecked)
 return false;
 };
 
+bool UserManager::isUserLoggedIn()
+{
+    if (idOfLoggedUser==0) return false;
+    if (idOfLoggedUser!=0) return true;
+};
+

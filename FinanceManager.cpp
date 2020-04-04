@@ -9,7 +9,7 @@ void FinanceManager::toRegisterUser()
 void FinanceManager::toLogUserIn()
 {
     userManager.logIn();
-    if (userManager.getIdOfLoggedUser()!=0)
+    if (userManager.isUserLoggedIn())
     {
         incomeManager = new IncomeManager(userManager.getIdOfLoggedUser());
     };

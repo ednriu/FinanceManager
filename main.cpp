@@ -10,6 +10,7 @@ using namespace std;
 
 int main()
 {
+    setlocale(LC_ALL,"");
     Menu menu;
     FinanceManager financeManager("users.xml");
     while(1)
@@ -58,19 +59,18 @@ int main()
     return 0;
 }
 
-/*int _main()
+int test_main()
 {
-    IncomeManager test;
+    IncomeManager test(2);
+    DateAuxiliaryMethods date1;
+    DateAuxiliaryMethods date2;
 
 
     UserManager userManager("Users.xml");
-    //userManager.registration();
-    //userManager.logIn();
-    //userManager.passwordChange();
-    //test.showUsersIncomeWithinDataRange();
+    test.showUsersIncomeWithinDataRange(date1.provideDataOfFirstDayMonthBefore(), date2.provideDataofLastDayThisMonth());
     system("pause");
-    test.addIncome();
+
 
 
     return 0;
-}*/
+}

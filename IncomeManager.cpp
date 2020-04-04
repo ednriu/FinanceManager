@@ -68,12 +68,13 @@ int IncomeManager::dateInput()
 
 int IncomeManager::moneyInput()
 {
-    float ammount;
+    string ammount;
     int ammountMultiplied;
 
     cout<<"Kwota:";
     cin>>ammount;
-    ammountMultiplied = ammount*100;
+
+    ammountMultiplied = replaceCommaWithDot(ammount)*100;
     return ammountMultiplied;
 };
 
@@ -99,7 +100,7 @@ void IncomeManager::sortIncomesAccordingToDate()
       return lhs.getDate() < rhs.getDate();
    });
 };
-void IncomeManager::showUsersIncomeWithinDataRange(int rangeLeft, int rangeRight)
+void IncomeManager::showUsersIncomeWithinDataRange(int rangeLeft, int rangeRight) //if the ranges are 0, method asks about the dates.
 {
     DateAuxiliaryMethods dateOperator;
     readIncomesFromFileOfLoggedUser();
@@ -107,7 +108,9 @@ void IncomeManager::showUsersIncomeWithinDataRange(int rangeLeft, int rangeRight
 
     if ((rangeLeft==0) || (rangeRight==0))
     {
+        cout<<"Data poczatkowa:"<<endl;
         date1 = dateInput();
+        cout<<"Data koncowa:"<<endl;
         date2 = dateInput();
     }
     else
@@ -116,22 +119,9 @@ void IncomeManager::showUsersIncomeWithinDataRange(int rangeLeft, int rangeRight
         date2 = rangeRight;
     };
 
-
     sortIncomesAccordingToDate();
-
-    for(vector <FinancialData> :: iterator it = incomes.begin(); it != incomes.end(); ++it)
-        {
-           if (((*it).getDate()>=date1)&&((*it).getDate()<=date2))
-           {
-                cout << dateOperator.convertDataIntegerToString((*it).getDate());
-                cout <<" -> ";
-                cout << (*it).getCategory();
-                cout<<" -> ";
-                cout << getPLNfromInt((*it).getMoneyAmmount());
-                cout<<"zl."<<endl;
-           }
-        }
-    cout << fixed << setprecision(2)<<sumUpUserIncomesWithinDataRange(date1, date2)<<endl;
+    theLoopCoutsIncomesWithinDates(date1, date2);
+    cout <<"Total:"<< fixed << setprecision(2)<<sumUpUserIncomesWithinDataRange(date1, date2)<<"zl."<<endl;
     system("Pause");
     incomes.clear();
 };
@@ -147,4 +137,38 @@ float IncomeManager::sumUpUserIncomesWithinDataRange(int date1, int date2)
         };
 
     return sumToBeReturned;
+};
+void IncomeManager::theLoopCoutsIncomesWithinDates(int date1, int date2)
+{
+    DateAuxiliaryMethods dateOperator;
+
+    for(vector <FinancialData> :: iterator it = incomes.begin(); it != incomes.end(); ++it)
+        {
+           if (((*it).getDate()>=date1)&&((*it).getDate()<=date2))
+           {
+                cout << dateOperator.convertDataIntegerToString((*it).getDate());
+                cout <<" -> ";
+                cout << (*it).getCategory();
+                cout<<" -> ";
+                cout << getPLNfromInt((*it).getMoneyAmmount());
+                cout<<"zl."<<endl;
+           }
+        }
+}
+
+float IncomeManager::replaceCommaWithDot(string text)
+{
+    int i;
+    float valueToBeReturned;
+    int len = text.length();
+    for (i = 0; i < len; i++)
+    {
+        if (text[i] == ',')
+        {
+            text[i] = '.';
+            i = len; // or `break;`
+        }
+    }
+    valueToBeReturned = strtof((text).c_str(),0);
+    return valueToBeReturned;
 };
