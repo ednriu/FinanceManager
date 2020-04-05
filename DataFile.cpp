@@ -18,7 +18,7 @@ void DataFile::saveXmlFromVector(vector<FinancialData> &anyData, string FileName
         xml.OutOfElem();
     }
     xml.OutOfElem();
-    xml.Save("F:\\NaukaCPP\\FinanceManager\\" + FileName+".xml");
+    xml.Save("E:\\NaukaCPP\\FinanceManager\\" + FileName+".xml");
 };
 
 vector<FinancialData> DataFile::loadXmlToVector(string FileName, int idOfLoggedUser, bool loadAllUsersData)
@@ -27,7 +27,7 @@ vector<FinancialData> DataFile::loadXmlToVector(string FileName, int idOfLoggedU
     FinancialData individualFinancialRecord;
     vector<FinancialData> anyData;
 
-    xml.Load("F:\\NaukaCPP\\FinanceManager\\" + FileName +".xml");
+    xml.Load("E:\\NaukaCPP\\FinanceManager\\" + FileName +".xml");
 
     xml.ResetPos(); // top of document
     xml.FindElem(); // ORDER element is root

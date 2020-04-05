@@ -7,7 +7,7 @@ char Menu::menuLoggedOut()
     cout<<"+-------------------------+"<<endl;
     cout<<"|Zaloguj (z)              |"<<endl;
     cout<<"|Rejestracja (r)          |"<<endl;
-    cout<<"|Zakończ (k)              |"<<endl;
+    cout<<"|Zakoncz (k)              |"<<endl;
     cout<<"+-------------------------+"<<endl;
     return auxiliaryMethods.readKey();
 };
@@ -18,7 +18,7 @@ char Menu::menuLoggedIn()
     cout << "+--------------------------------------+"<<endl;
     cout << "|Dodaj przychod (p)                    |"<<endl;
     cout << "|Dodaj wydatek (w)                     |"<<endl;
-    cout << "|Bilans z biezacego miesiąca (c)       |"<<endl;
+    cout << "|Bilans z biezacego miesiaca (c)       |"<<endl;
     cout << "|Bilans z poprzedniego miesiaca (x)    |"<<endl;
     cout << "|Bilans z wybranego okresu (z)         |"<<endl;
     cout << "|Zmien haslo (h)                       |"<<endl;

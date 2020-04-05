@@ -27,7 +27,7 @@ vector<User> UserFile::loadXmlToVector(string FileName)
     User individualUserRecord;
     vector<User> users;
 
-    xml.Load("F:\\NaukaCPP\\FinanceManager\\" + FileName);
+    xml.Load("E:\\NaukaCPP\\FinanceManager\\" + FileName);
 
     xml.ResetPos(); // top of document
     xml.FindElem(); // ORDER element is root

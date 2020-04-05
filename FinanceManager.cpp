@@ -12,6 +12,7 @@ void FinanceManager::toLogUserIn()
     if (userManager.isUserLoggedIn())
     {
         incomeManager = new IncomeManager(userManager.getIdOfLoggedUser());
+        expenceManager = new ExpenceManager(userManager.getIdOfLoggedUser());
     };
 };
 
@@ -36,6 +37,11 @@ void FinanceManager::toLogUserOut()
 void FinanceManager::toAddIncome()
 {
     incomeManager -> addIncome();
+};
+
+void FinanceManager::toAddExpence()
+{
+    expenceManager -> addExpence();
 };
 
 int FinanceManager::showBalanceBetweenTwoDates()

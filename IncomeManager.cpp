@@ -8,10 +8,10 @@ void IncomeManager::readIncomesFromFileOfLoggedUser()
     cout <<"Wczytano Plik z Dochodami"<<endl;
 };
 
-void IncomeManager::readAllIncomesFromFile()
+void IncomeManager::readAllIncomesFromFile(string fileName)
 {
     DataFile incomesFile;
-    incomes = incomesFile.loadXmlToVector(INCOME_FILE_NAME, ID_OF_LOGGED_USER, true);
+    incomes = incomesFile.loadXmlToVector(fileName, ID_OF_LOGGED_USER, true);
     cout <<"Wczytano Plik z Dochodami"<<endl;
 };
 
@@ -22,7 +22,7 @@ void IncomeManager::addIncome()
     DateAuxiliaryMethods dateOperator;
     string dataReader;
 
-    readAllIncomesFromFile();
+    readAllIncomesFromFile(INCOME_FILE_NAME);
 
     system("cls");
     int dateTemp = dateInput();

@@ -36,7 +36,7 @@ int main()
                 financeManager.toAddIncome();
                 break;
             case 'w' :
-                //financeManager.toRegisterUser();
+                financeManager.toAddExpence();
                 break;
             case 'h' :
                 financeManager.toChangePassword();
@@ -59,18 +59,15 @@ int main()
     return 0;
 }
 
-int test_main()
+/*int test_main()
 {
-    IncomeManager test(2);
-    DateAuxiliaryMethods date1;
-    DateAuxiliaryMethods date2;
-
+    ExpenceManager test(4);
 
     UserManager userManager("Users.xml");
-    test.showUsersIncomeWithinDataRange(date1.provideDataOfFirstDayMonthBefore(), date2.provideDataofLastDayThisMonth());
+    test.addExpence();
     system("pause");
 
 
 
     return 0;
-}
+}*/

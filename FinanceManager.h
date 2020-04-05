@@ -5,6 +5,7 @@
 
 #include "UserManager.h"
 #include "IncomeManager.h"
+#include "ExpenceManager.h"
 
 using namespace std;
 
@@ -12,15 +13,19 @@ class FinanceManager
 {
     UserManager userManager;
     IncomeManager *incomeManager;
+    ExpenceManager *expenceManager;
 public:
     FinanceManager(string userFileName):userManager(userFileName)
     {
         incomeManager = NULL;
+        expenceManager = NULL;
     };
     ~FinanceManager()
     {
         delete incomeManager;
         incomeManager = NULL;
+        delete expenceManager;
+        expenceManager = NULL;
     }
     void toRegisterUser();
     void toLogUserIn();
@@ -28,6 +33,7 @@ public:
     void toChangePassword();
     void toLogUserOut();
     void toAddIncome();
+    void toAddExpence();
     int showBalanceBetweenTwoDates();
     int showBalanceForThatMonth();
     int showBalanceForLastMonth();
