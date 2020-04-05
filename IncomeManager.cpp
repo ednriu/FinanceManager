@@ -5,14 +5,14 @@ void IncomeManager::readIncomesFromFileOfLoggedUser()
 {
     DataFile incomesFile;
     incomes = incomesFile.loadXmlToVector(INCOME_FILE_NAME, ID_OF_LOGGED_USER, false);
-    cout <<"Wczytano Plik z Dochodami"<<endl;
+    //cout <<"Wczytano Plik z Dochodami"<<endl;
 };
 
 void IncomeManager::readAllIncomesFromFile(string fileName)
 {
     DataFile incomesFile;
     incomes = incomesFile.loadXmlToVector(fileName, ID_OF_LOGGED_USER, true);
-    cout <<"Wczytano Plik z Dochodami"<<endl;
+    //cout <<"Wczytano Plik z Dochodami"<<endl;
 };
 
 void IncomeManager::addIncome()
@@ -27,7 +27,7 @@ void IncomeManager::addIncome()
     system("cls");
     int dateTemp = dateInput();
     pieceOfData.setDate(dateTemp);
-    pieceOfData.setId(1234);
+    pieceOfData.setId(0);
     pieceOfData.setUserId(ID_OF_LOGGED_USER);
     pieceOfData.setCategory(categoryInput());
     pieceOfData.setMoneyAmmount(moneyInput());
@@ -73,8 +73,7 @@ int IncomeManager::moneyInput()
 
     cout<<"Kwota:";
     cin>>ammount;
-
-    ammountMultiplied = replaceCommaWithDot(ammount)*100;
+    ammountMultiplied = (float)replaceCommaWithDot(ammount)*(float)100;
     return ammountMultiplied;
 };
 
@@ -121,7 +120,7 @@ void IncomeManager::showUsersIncomeWithinDataRange(int rangeLeft, int rangeRight
 
     sortIncomesAccordingToDate();
     theLoopCoutsIncomesWithinDates(date1, date2);
-    cout <<"Total:"<< fixed << setprecision(2)<<sumUpUserIncomesWithinDataRange(date1, date2)<<"zl."<<endl;
+    cout <<endl<<"Suma Wplywow:"<< fixed << setprecision(2)<<sumUpUserIncomesWithinDataRange(date1, date2)<<"zl."<<endl;
     system("Pause");
     incomes.clear();
 };
