@@ -1,8 +1,10 @@
 #include "DataFile.h"
 
+
 void DataFile::saveXmlFromVector(vector<FinancialData> &anyData, string FileName)
 {
     CMarkup xml;
+    DateAuxiliaryMethods dateAuxiliaryMethods;
 
     xml.AddElem(FileName);
     xml.IntoElem();
@@ -14,7 +16,7 @@ void DataFile::saveXmlFromVector(vector<FinancialData> &anyData, string FileName
         xml.AddElem( "USER_ID", (*it).getUserId());
         xml.AddElem( "CATEGORY", (*it).getCategory());
         xml.AddElem( "MONEY_AMMOUNT", (*it).getMoneyAmmount());
-        xml.AddElem( "DATE", (*it).getDate());
+        xml.AddElem( "DATE", dateAuxiliaryMethods.convertDataIntegerToString((*it).getDate()));
         xml.OutOfElem();
     }
     xml.OutOfElem();
@@ -25,6 +27,7 @@ void DataFile::saveXmlFromVector(vector<FinancialData> &anyData, string FileName
 vector<FinancialData> DataFile::loadXmlToVector(string FileName, int idOfLoggedUser, bool loadAllUsersData)
 {
     CMarkup xml;
+    DateAuxiliaryMethods dateAuxiliaryMethods;
     FinancialData individualFinancialRecord;
     vector<FinancialData> anyData;
 
@@ -57,7 +60,7 @@ vector<FinancialData> DataFile::loadXmlToVector(string FileName, int idOfLoggedU
                 individualFinancialRecord.setMoneyAmmount(atoi(MCD_2PCSZ(xml.GetData())));
 
                 xml.FindElem( "DATE" );
-                individualFinancialRecord.setDate(atoi(MCD_2PCSZ(xml.GetData())));
+                individualFinancialRecord.setDate(dateAuxiliaryMethods.convertStringToDataInteger(xml.GetData()));
 
                 anyData.push_back(individualFinancialRecord);
             };

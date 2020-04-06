@@ -7,6 +7,7 @@
 
 #include "Markup.h"
 #include "FinancialData.h"
+#include "DateAuxiliaryMethods.h"
 
 using namespace std;
 
