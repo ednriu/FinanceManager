@@ -56,6 +56,8 @@ int FinanceManager::showBalanceForThatMonth()
     DateAuxiliaryMethods date1;
     DateAuxiliaryMethods date2;
     float balance;
+
+    cout <<"Finanse z biezacego miesiaca:"<<endl;
     incomeManager ->readIncomesFromFileOfLoggedUser();
     expenceManager ->readExpencesFromFileOfLoggedUser();
     incomeManager ->showUsersIncomeWithinDataRange(date1.provideDataOfFirstDayThisMonth(), date2.provideDataOfToday());
@@ -73,5 +75,18 @@ int FinanceManager::showBalanceForLastMonth()
 {
     DateAuxiliaryMethods date1;
     DateAuxiliaryMethods date2;
+    float balance;
+
+    cout <<"Finanse z poprzedniego miesiaca:"<<endl;
+    incomeManager ->readIncomesFromFileOfLoggedUser();
+    expenceManager ->readExpencesFromFileOfLoggedUser();
     incomeManager ->showUsersIncomeWithinDataRange(date1.provideDataOfFirstDayMonthBefore(), date2.provideDataofLastDayMonthBefore());
+    cout << endl;
+    expenceManager ->showUsersExpenceWithinDataRange(date1.provideDataOfFirstDayMonthBefore(), date2.provideDataofLastDayMonthBefore());
+    cout <<endl;
+    balance = (incomeManager ->incomesInTotal(date1.provideDataOfFirstDayMonthBefore(), date2.provideDataofLastDayMonthBefore()))-(expenceManager->expencesInTotal(date1.provideDataOfFirstDayMonthBefore(), date2.provideDataofLastDayMonthBefore()));
+    cout << "Bilans: "<< setprecision(2)<< balance<<"zl,"<<endl;
+    incomeManager ->clearIncomes();
+    expenceManager ->clearExpences();
+    system("pause");
 };
