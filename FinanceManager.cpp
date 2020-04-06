@@ -32,6 +32,8 @@ void FinanceManager::toLogUserOut()
     userManager.logOut();
     delete incomeManager;
     incomeManager = NULL;
+    delete expenceManager;
+    expenceManager = NULL;
 };
 
 void FinanceManager::toAddIncome()
@@ -53,9 +55,17 @@ int FinanceManager::showBalanceForThatMonth()
 {
     DateAuxiliaryMethods date1;
     DateAuxiliaryMethods date2;
+    float balance;
+    incomeManager ->readIncomesFromFileOfLoggedUser();
+    expenceManager ->readExpencesFromFileOfLoggedUser();
     incomeManager ->showUsersIncomeWithinDataRange(date1.provideDataOfFirstDayThisMonth(), date2.provideDataOfToday());
     cout << endl;
     expenceManager ->showUsersExpenceWithinDataRange(date1.provideDataOfFirstDayThisMonth(), date2.provideDataOfToday());
+    cout <<endl;
+    balance = (incomeManager ->incomesInTotal(date1.provideDataOfFirstDayThisMonth(), date2.provideDataOfToday()))-(expenceManager->expencesInTotal(date1.provideDataOfFirstDayThisMonth(), date2.provideDataOfToday()));
+    cout << "Bilans: "<< setprecision(2)<< balance<<"zl,"<<endl;
+    incomeManager ->clearIncomes();
+    expenceManager ->clearExpences();
     system("pause");
 };
 

@@ -1,17 +1,17 @@
 #include "IncomeManager.h"
 
 
-void IncomeManager::readIncomesFromFileOfLoggedUser(string fileName)
+void IncomeManager::readIncomesFromFileOfLoggedUser()
 {
     DataFile incomesFile;
-    incomes = incomesFile.loadXmlToVector(fileName, ID_OF_LOGGED_USER, false);
+    incomes = incomesFile.loadXmlToVector(INCOME_FILE_NAME, ID_OF_LOGGED_USER, false);
     //cout <<"Wczytano Plik z Dochodami"<<endl;
 };
 
-void IncomeManager::readAllIncomesFromFile(string fileName)
+void IncomeManager::readAllIncomesFromFile()
 {
     DataFile incomesFile;
-    incomes = incomesFile.loadXmlToVector(fileName, ID_OF_LOGGED_USER, true);
+    incomes = incomesFile.loadXmlToVector(INCOME_FILE_NAME, ID_OF_LOGGED_USER, true);
     //cout <<"Wczytano Plik z Dochodami"<<endl;
 };
 
@@ -22,7 +22,7 @@ void IncomeManager::addIncome()
     DateAuxiliaryMethods dateOperator;
     string dataReader;
 
-    readAllIncomesFromFile(INCOME_FILE_NAME);
+    readAllIncomesFromFile();
 
     system("cls");
     int dateTemp = dateInput();
@@ -102,7 +102,7 @@ void IncomeManager::sortVectorWithFinancialDataAccordingToDate(vector<FinancialD
 void IncomeManager::showUsersIncomeWithinDataRange(int rangeLeft, int rangeRight) //if the ranges are 0, method asks about the dates.
 {
     DateAuxiliaryMethods dateOperator;
-    readIncomesFromFileOfLoggedUser(INCOME_FILE_NAME);
+    //readIncomesFromFileOfLoggedUser(INCOME_FILE_NAME);
     int date1, date2;
 
     if ((rangeLeft==0) || (rangeRight==0))
@@ -120,8 +120,8 @@ void IncomeManager::showUsersIncomeWithinDataRange(int rangeLeft, int rangeRight
 
     sortVectorWithFinancialDataAccordingToDate(incomes);
     theLoopCoutsVectorOfFinancialDataWithinDates(incomes,date1, date2);
-    cout <<endl<<"Suma Wplywow:"<< fixed << setprecision(2)<<sumUpVectorWithFinancialDataWithinDataRange(incomes, date1, date2)<<"zl."<<endl;
-    incomes.clear();
+    cout <<endl<<"Suma Wplywow:"<< fixed << setprecision(2)<<incomesInTotal(date1, date2)<<"zl."<<endl;
+    //incomes.clear();
 };
 
 float IncomeManager::sumUpVectorWithFinancialDataWithinDataRange(vector<FinancialData> &vectorToBeSummed, int date1, int date2)
@@ -169,4 +169,14 @@ float IncomeManager::replaceCommaWithDot(string text)
     }
     valueToBeReturned = strtof((text).c_str(),0);
     return valueToBeReturned;
+};
+
+float IncomeManager::incomesInTotal(int date1, int date2)
+{
+return sumUpVectorWithFinancialDataWithinDataRange(incomes, date1, date2);
+};
+
+void IncomeManager::clearIncomes()
+{
+    incomes.clear();
 };

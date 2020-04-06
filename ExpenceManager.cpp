@@ -8,7 +8,7 @@ void ExpenceManager::addExpence()
     DateAuxiliaryMethods dateOperator;
     string dataReader;
 
-    readAllExpencesFromFile(EXPENCE_FILE_NAME);
+    readAllExpencesFromFile();
 
     system("cls");
     int dateTemp = IncomeManager::dateInput();
@@ -24,24 +24,23 @@ void ExpenceManager::addExpence()
     expences.clear();
 }
 
-void ExpenceManager::readAllExpencesFromFile(string fileName)
+void ExpenceManager::readAllExpencesFromFile()
 {
     DataFile expencesFile;
-    expences = expencesFile.loadXmlToVector(fileName, ID_OF_LOGGED_USER, true);
+    expences = expencesFile.loadXmlToVector(EXPENCE_FILE_NAME, ID_OF_LOGGED_USER, true);
     cout <<"Wczytano Plik z Wydatkami"<<endl;
 };
 
-void ExpenceManager::readExpencesFromFileOfLoggedUser(string fileName)
+void ExpenceManager::readExpencesFromFileOfLoggedUser()
 {
     DataFile expencesFile;
-    expences = expencesFile.loadXmlToVector(fileName, ID_OF_LOGGED_USER, false);
+    expences = expencesFile.loadXmlToVector(EXPENCE_FILE_NAME, ID_OF_LOGGED_USER, false);
     //cout <<"Wczytano Plik z Dochodami"<<endl;
 };
 
 void ExpenceManager::showUsersExpenceWithinDataRange(int rangeLeft, int rangeRight) //if the ranges are 0, method asks about the dates.
 {
     DateAuxiliaryMethods dateOperator;
-    readExpencesFromFileOfLoggedUser(EXPENCE_FILE_NAME);
     int date1, date2;
 
     if ((rangeLeft==0) || (rangeRight==0))
@@ -59,6 +58,15 @@ void ExpenceManager::showUsersExpenceWithinDataRange(int rangeLeft, int rangeRig
 
     sortVectorWithFinancialDataAccordingToDate(expences);
     theLoopCoutsVectorOfFinancialDataWithinDates(expences,date1, date2);
-    cout <<endl<<"Suma Wplywow:"<< fixed << setprecision(2)<<sumUpVectorWithFinancialDataWithinDataRange(expences, date1, date2)<<"zl."<<endl;
+    cout <<endl<<"Suma Wydatkow:"<< fixed << setprecision(2)<<expencesInTotal(date1, date2)<<"zl."<<endl;
+};
+
+float ExpenceManager::expencesInTotal(int date1, int date2)
+{
+    return sumUpVectorWithFinancialDataWithinDataRange(expences, date1, date2);
+};
+
+void ExpenceManager::clearExpences()
+{
     expences.clear();
 };

@@ -19,8 +19,8 @@ class ExpenceManager : private IncomeManager
     const int ID_OF_LOGGED_USER;
     vector<FinancialData> expences;
 
-    void readAllExpencesFromFile(string fileName);
-    void readExpencesFromFileOfLoggedUser(string fileName);
+    void readAllExpencesFromFile();
+
 
 public:
 
@@ -28,8 +28,11 @@ public:
     {
     //expences = &IncomeManager::incomes;
     };
+    void readExpencesFromFileOfLoggedUser();
     void addExpence();
     void showUsersExpenceWithinDataRange(int date1, int date2);
+    float expencesInTotal(int date1, int date2);
+    void clearExpences();
 };
 
 #endif // EXPENCEMANAGER_H_INCLUDED

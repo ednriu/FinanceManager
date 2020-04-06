@@ -14,8 +14,8 @@ using namespace std;
 class IncomeManager
 {
     const string INCOME_FILE_NAME = "Incomes";
-    void readIncomesFromFileOfLoggedUser(string fileName);
-    void readAllIncomesFromFile(string fileName);
+
+    void readAllIncomesFromFile();
     const int ID_OF_LOGGED_USER;
     vector<FinancialData> incomes;
 
@@ -39,6 +39,9 @@ public:
 
     void addIncome();
     void showUsersIncomeWithinDataRange(int date1, int date2);
+    float incomesInTotal(int date1, int date2);
+    void readIncomesFromFileOfLoggedUser();
+    void clearIncomes();
 
 };
 
