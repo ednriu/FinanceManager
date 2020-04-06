@@ -54,6 +54,9 @@ int FinanceManager::showBalanceForThatMonth()
     DateAuxiliaryMethods date1;
     DateAuxiliaryMethods date2;
     incomeManager ->showUsersIncomeWithinDataRange(date1.provideDataOfFirstDayThisMonth(), date2.provideDataOfToday());
+    cout << endl;
+    expenceManager ->showUsersExpenceWithinDataRange(date1.provideDataOfFirstDayThisMonth(), date2.provideDataOfToday());
+    system("pause");
 };
 
 int FinanceManager::showBalanceForLastMonth()

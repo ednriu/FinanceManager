@@ -33,7 +33,9 @@ protected:
 
 public:
     IncomeManager(int id_of_logged_user):ID_OF_LOGGED_USER(id_of_logged_user)
-    {};
+    {
+
+    };
 
     void addIncome();
     void showUsersIncomeWithinDataRange(int date1, int date2);

@@ -121,7 +121,6 @@ void IncomeManager::showUsersIncomeWithinDataRange(int rangeLeft, int rangeRight
     sortVectorWithFinancialDataAccordingToDate(incomes);
     theLoopCoutsVectorOfFinancialDataWithinDates(incomes,date1, date2);
     cout <<endl<<"Suma Wplywow:"<< fixed << setprecision(2)<<sumUpVectorWithFinancialDataWithinDataRange(incomes, date1, date2)<<"zl."<<endl;
-    system("Pause");
     incomes.clear();
 };
 
