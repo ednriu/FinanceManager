@@ -18,7 +18,8 @@ void UserFile::saveXmlFromVector(vector<User> users, string FileName)
         xml.OutOfElem();
     }
     xml.OutOfElem();
-    xml.Save("E:\\NaukaCPP\\FinanceManager\\" + FileName);
+    xml.Save(FileName);
+    //"E:\\NaukaCPP\\FinanceManager\\" +
 };
 
 vector<User> UserFile::loadXmlToVector(string FileName)
@@ -27,7 +28,8 @@ vector<User> UserFile::loadXmlToVector(string FileName)
     User individualUserRecord;
     vector<User> users;
 
-    xml.Load("E:\\NaukaCPP\\FinanceManager\\" + FileName);
+    xml.Load(FileName);
+    //"E:\\NaukaCPP\\FinanceManager\\" +
 
     xml.ResetPos(); // top of document
     xml.FindElem(); // ORDER element is root
