@@ -48,16 +48,40 @@ void FinanceManager::toAddExpence()
 
 int FinanceManager::showBalanceBetweenTwoDates()
 {
-    incomeManager -> showUsersIncomeWithinDataRange(0,0);
+    int date1, date2;
+    DateAuxiliaryMethods dateAuxiliaryMethods;
+    float balance;
+
+    cout<<"Podaj date poczatkowa:"<<endl;
+    date1 = incomeManager->dateInput();
+    cout<<"Podaj date koncowa:"<<endl;
+    date2 = incomeManager->dateInput();
+    cout <<endl;
+
+    system("cls");
+    cout <<"Finanse od:"<<dateAuxiliaryMethods.convertDataIntegerToString(date1)<<" do: "<<dateAuxiliaryMethods.convertDataIntegerToString(date2)<<endl;
+    incomeManager ->readIncomesFromFileOfLoggedUser();
+    expenceManager ->readExpencesFromFileOfLoggedUser();
+    incomeManager ->showUsersIncomeWithinDataRange(date1, date2);
+    cout << endl;
+    expenceManager ->showUsersExpenceWithinDataRange(date1, date2);
+    cout <<endl;
+    balance = (incomeManager ->incomesInTotal(date1, date2))-(expenceManager->expencesInTotal(date1, date2));
+    cout << "Bilans: "<< setprecision(2)<< balance<<"zl,"<<endl;
+    incomeManager ->clearIncomes();
+    expenceManager ->clearExpences();
+    system("pause");
 };
 
 int FinanceManager::showBalanceForThatMonth()
 {
+    AuxiliaryMethods auxiliaryMethods;
     DateAuxiliaryMethods date1;
     DateAuxiliaryMethods date2;
     float balance;
 
-    cout <<"Finanse z biezacego miesiaca:"<<endl;
+    system("cls");
+    auxiliaryMethods.printHeader("Finanse z biezacego miesiaca:");
     incomeManager ->readIncomesFromFileOfLoggedUser();
     expenceManager ->readExpencesFromFileOfLoggedUser();
     incomeManager ->showUsersIncomeWithinDataRange(date1.provideDataOfFirstDayThisMonth(), date2.provideDataOfToday());
@@ -73,11 +97,13 @@ int FinanceManager::showBalanceForThatMonth()
 
 int FinanceManager::showBalanceForLastMonth()
 {
+    AuxiliaryMethods auxiliaryMethods;
     DateAuxiliaryMethods date1;
     DateAuxiliaryMethods date2;
     float balance;
 
-    cout <<"Finanse z poprzedniego miesiaca:"<<endl;
+    system("cls");
+    auxiliaryMethods.printHeader("Finanse z poprzedniego miesiaca:");
     incomeManager ->readIncomesFromFileOfLoggedUser();
     expenceManager ->readExpencesFromFileOfLoggedUser();
     incomeManager ->showUsersIncomeWithinDataRange(date1.provideDataOfFirstDayMonthBefore(), date2.provideDataofLastDayMonthBefore());

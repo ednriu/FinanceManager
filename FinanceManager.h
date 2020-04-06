@@ -6,6 +6,7 @@
 #include "UserManager.h"
 #include "IncomeManager.h"
 #include "ExpenceManager.h"
+#include "AuxiliaryMethods.h"
 
 using namespace std;
 

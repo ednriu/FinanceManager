@@ -21,7 +21,7 @@ class IncomeManager
 
 
 protected:
-    int dateInput();
+
     int moneyInput();
     string categoryInput();
     float getPLNfromInt(int moneyInt);
@@ -42,6 +42,7 @@ public:
     float incomesInTotal(int date1, int date2);
     void readIncomesFromFileOfLoggedUser();
     void clearIncomes();
+    int dateInput();
 
 };
 
