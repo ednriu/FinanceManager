@@ -30,3 +30,10 @@ void ExpenceManager::readAllExpencesFromFile(string fileName)
     expences = expencesFile.loadXmlToVector(fileName, ID_OF_LOGGED_USER, true);
     cout <<"Wczytano Plik z Wydatkami"<<endl;
 };
+
+void ExpenceManager::readExpencesFromFileOfLoggedUser(string fileName)
+{
+    DataFile expencesFile;
+    expences = expencesFile.loadXmlToVector(fileName, ID_OF_LOGGED_USER, false);
+    //cout <<"Wczytano Plik z Dochodami"<<endl;
+};

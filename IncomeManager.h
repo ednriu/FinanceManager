@@ -14,21 +14,20 @@ using namespace std;
 class IncomeManager
 {
     const string INCOME_FILE_NAME = "Incomes";
-    void readIncomesFromFileOfLoggedUser();
+    void readIncomesFromFileOfLoggedUser(string fileName);
     void readAllIncomesFromFile(string fileName);
     const int ID_OF_LOGGED_USER;
+    vector<FinancialData> incomes;
 
 
 protected:
-    vector<FinancialData> incomes;
-
     int dateInput();
     int moneyInput();
     string categoryInput();
     float getPLNfromInt(int moneyInt);
-    void sortIncomesAccordingToDate();
-    float sumUpUserIncomesWithinDataRange(int date1, int date2);
-    void theLoopCoutsIncomesWithinDates(int date1, int date2);
+    void sortVectorWithFinancialDataAccordingToDate(vector<FinancialData> &vectorToBeSorted);
+    float sumUpVectorWithFinancialDataWithinDataRange(vector<FinancialData> &vectorToBeSummed, int date1, int date2);
+    void theLoopCoutsVectorOfFinancialDataWithinDates(vector<FinancialData> &vectorToBeCouted, int date1, int date2);
     float replaceCommaWithDot(string text);
 
 

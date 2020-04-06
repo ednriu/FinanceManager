@@ -1,10 +1,10 @@
 #include "IncomeManager.h"
 
 
-void IncomeManager::readIncomesFromFileOfLoggedUser()
+void IncomeManager::readIncomesFromFileOfLoggedUser(string fileName)
 {
     DataFile incomesFile;
-    incomes = incomesFile.loadXmlToVector(INCOME_FILE_NAME, ID_OF_LOGGED_USER, false);
+    incomes = incomesFile.loadXmlToVector(fileName, ID_OF_LOGGED_USER, false);
     //cout <<"Wczytano Plik z Dochodami"<<endl;
 };
 
@@ -93,16 +93,16 @@ float IncomeManager::getPLNfromInt(int moneyInt)
     moneyFloat = ((float)moneyInt/100);
     return moneyFloat;
 };
-void IncomeManager::sortIncomesAccordingToDate()
+void IncomeManager::sortVectorWithFinancialDataAccordingToDate(vector<FinancialData> &vectorToBeSorted)
 {
-    sort(incomes.begin(), incomes.end(), [](FinancialData& lhs, FinancialData& rhs) { //neecs attention: check why does not work with the Const
+    sort(vectorToBeSorted.begin(), vectorToBeSorted.end(), [](FinancialData& lhs, FinancialData& rhs) { //neecs attention: check why does not work with the Const
       return lhs.getDate() < rhs.getDate();
    });
 };
 void IncomeManager::showUsersIncomeWithinDataRange(int rangeLeft, int rangeRight) //if the ranges are 0, method asks about the dates.
 {
     DateAuxiliaryMethods dateOperator;
-    readIncomesFromFileOfLoggedUser();
+    readIncomesFromFileOfLoggedUser(INCOME_FILE_NAME);
     int date1, date2;
 
     if ((rangeLeft==0) || (rangeRight==0))
@@ -118,30 +118,30 @@ void IncomeManager::showUsersIncomeWithinDataRange(int rangeLeft, int rangeRight
         date2 = rangeRight;
     };
 
-    sortIncomesAccordingToDate();
-    theLoopCoutsIncomesWithinDates(date1, date2);
-    cout <<endl<<"Suma Wplywow:"<< fixed << setprecision(2)<<sumUpUserIncomesWithinDataRange(date1, date2)<<"zl."<<endl;
+    sortVectorWithFinancialDataAccordingToDate(incomes);
+    theLoopCoutsVectorOfFinancialDataWithinDates(incomes,date1, date2);
+    cout <<endl<<"Suma Wplywow:"<< fixed << setprecision(2)<<sumUpVectorWithFinancialDataWithinDataRange(incomes, date1, date2)<<"zl."<<endl;
     system("Pause");
     incomes.clear();
 };
 
-float IncomeManager::sumUpUserIncomesWithinDataRange(int date1, int date2)
+float IncomeManager::sumUpVectorWithFinancialDataWithinDataRange(vector<FinancialData> &vectorToBeSummed, int date1, int date2)
 {
     float sumToBeReturned=0;;
     DateAuxiliaryMethods dateOperator;
 
-    for(vector <FinancialData> :: iterator it = incomes.begin(); it != incomes.end(); ++it)
+    for(vector <FinancialData> :: iterator it = vectorToBeSummed.begin(); it != vectorToBeSummed.end(); ++it)
         {
             if (((*it).getDate()>=date1)&&((*it).getDate()<=date2)) sumToBeReturned = sumToBeReturned+getPLNfromInt((*it).getMoneyAmmount());
         };
 
     return sumToBeReturned;
 };
-void IncomeManager::theLoopCoutsIncomesWithinDates(int date1, int date2)
+void IncomeManager::theLoopCoutsVectorOfFinancialDataWithinDates(vector<FinancialData> &vectorToBeCouted, int date1, int date2)
 {
     DateAuxiliaryMethods dateOperator;
 
-    for(vector <FinancialData> :: iterator it = incomes.begin(); it != incomes.end(); ++it)
+    for(vector <FinancialData> :: iterator it = vectorToBeCouted.begin(); it != vectorToBeCouted.end(); ++it)
         {
            if (((*it).getDate()>=date1)&&((*it).getDate()<=date2))
            {

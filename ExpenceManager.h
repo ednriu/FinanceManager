@@ -20,6 +20,7 @@ class ExpenceManager : private IncomeManager
     vector<FinancialData> expences;
 
     void readAllExpencesFromFile(string fileName);
+    void readExpencesFromFileOfLoggedUser(string fileName);
 
 public:
 
