@@ -35,7 +35,6 @@ string FinancialData::getCategory()
 };
 float FinancialData::getMoneyAmmount()
 {
-    setprecision(2);
     return moneyAmmount;
 };
 int FinancialData::getDate()
