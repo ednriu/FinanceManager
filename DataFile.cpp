@@ -15,6 +15,9 @@ void DataFile::saveXmlFromVector(vector<FinancialData> &anyData, string FileName
         xml.AddElem("ID",to_string((*it).getId()));
         xml.AddElem( "USER_ID", (*it).getUserId());
         xml.AddElem( "CATEGORY", (*it).getCategory());
+        cout << (*it).getMoneyAmmount()<<endl;
+        cout << setprecision(2)<<to_string((*it).getMoneyAmmount());
+        system("pause");
         string moneyAmmount = to_string((*it).getMoneyAmmount());
         moneyAmmount = moneyAmmount.substr(0, moneyAmmount.find(".", 0)+3); //formatting string text till 2 decimal places.
         xml.AddElem( "MONEY_AMMOUNT", moneyAmmount);
