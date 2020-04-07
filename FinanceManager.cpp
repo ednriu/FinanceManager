@@ -67,7 +67,8 @@ int FinanceManager::showBalanceBetweenTwoDates()
     expenceManager ->showUsersExpenceWithinDataRange(date1, date2);
     cout <<endl;
     balance = (incomeManager ->incomesInTotal(date1, date2))-(expenceManager->expencesInTotal(date1, date2));
-    cout << "Bilans: "<< setprecision(2)<< balance<<"zl,"<<endl;
+    cout << "BILANS: "<< setprecision(2)<< balance<<"zl."<<endl;
+    cout <<endl;
     incomeManager ->clearIncomes();
     expenceManager ->clearExpences();
     system("pause");
@@ -89,7 +90,8 @@ int FinanceManager::showBalanceForThatMonth()
     expenceManager ->showUsersExpenceWithinDataRange(date1.provideDataOfFirstDayThisMonth(), date2.provideDataOfToday());
     cout <<endl;
     balance = (incomeManager ->incomesInTotal(date1.provideDataOfFirstDayThisMonth(), date2.provideDataOfToday()))-(expenceManager->expencesInTotal(date1.provideDataOfFirstDayThisMonth(), date2.provideDataOfToday()));
-    cout << "Bilans: "<< setprecision(2)<< balance<<"zl,"<<endl;
+    cout << "BILANS: "<< setprecision(2)<< balance<<"zl,"<<endl;
+    cout<<endl;
     incomeManager ->clearIncomes();
     expenceManager ->clearExpences();
     system("pause");
@@ -111,7 +113,8 @@ int FinanceManager::showBalanceForLastMonth()
     expenceManager ->showUsersExpenceWithinDataRange(date1.provideDataOfFirstDayMonthBefore(), date2.provideDataofLastDayMonthBefore());
     cout <<endl;
     balance = (incomeManager ->incomesInTotal(date1.provideDataOfFirstDayMonthBefore(), date2.provideDataofLastDayMonthBefore()))-(expenceManager->expencesInTotal(date1.provideDataOfFirstDayMonthBefore(), date2.provideDataofLastDayMonthBefore()));
-    cout << "Bilans: "<< setprecision(2)<< balance<<"zl,"<<endl;
+    cout << "BILANS: "<< setprecision(2)<< balance<<"zl,"<<endl;
+    cout << endl;
     incomeManager ->clearIncomes();
     expenceManager ->clearExpences();
     system("pause");

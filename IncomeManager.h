@@ -14,6 +14,7 @@ using namespace std;
 class IncomeManager
 {
     const string INCOME_FILE_NAME = "Incomes";
+    int idOfLastUser;
 
     void readAllIncomesFromFile();
     const int ID_OF_LOGGED_USER;
@@ -22,9 +23,8 @@ class IncomeManager
 
 protected:
 
-    int moneyInput();
+    float moneyInput();
     string categoryInput();
-    float getPLNfromInt(int moneyInt);
     void sortVectorWithFinancialDataAccordingToDate(vector<FinancialData> &vectorToBeSorted);
     float sumUpVectorWithFinancialDataWithinDataRange(vector<FinancialData> &vectorToBeSummed, int date1, int date2);
     void theLoopCoutsVectorOfFinancialDataWithinDates(vector<FinancialData> &vectorToBeCouted, int date1, int date2);

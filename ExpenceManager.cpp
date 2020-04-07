@@ -13,7 +13,7 @@ void ExpenceManager::addExpence()
     system("cls");
     int dateTemp = IncomeManager::dateInput();
     pieceOfData.setDate(dateTemp);
-    pieceOfData.setId(1234);
+    pieceOfData.setId(idOfLastUser+1);
     pieceOfData.setUserId(ID_OF_LOGGED_USER);
     pieceOfData.setCategory(categoryInput());
     pieceOfData.setMoneyAmmount(moneyInput());
@@ -27,14 +27,14 @@ void ExpenceManager::addExpence()
 void ExpenceManager::readAllExpencesFromFile()
 {
     DataFile expencesFile;
-    expences = expencesFile.loadXmlToVector(EXPENCE_FILE_NAME, ID_OF_LOGGED_USER, true);
+    expences = expencesFile.loadXmlToVector(EXPENCE_FILE_NAME, ID_OF_LOGGED_USER, true, idOfLastUser);
     cout <<"Wczytano Plik z Wydatkami"<<endl;
 };
 
 void ExpenceManager::readExpencesFromFileOfLoggedUser()
 {
     DataFile expencesFile;
-    expences = expencesFile.loadXmlToVector(EXPENCE_FILE_NAME, ID_OF_LOGGED_USER, false);
+    expences = expencesFile.loadXmlToVector(EXPENCE_FILE_NAME, ID_OF_LOGGED_USER, false, idOfLastUser);
     //cout <<"Wczytano Plik z Dochodami"<<endl;
 };
 
@@ -58,6 +58,7 @@ void ExpenceManager::showUsersExpenceWithinDataRange(int rangeLeft, int rangeRig
 
     sortVectorWithFinancialDataAccordingToDate(expences);
     theLoopCoutsVectorOfFinancialDataWithinDates(expences,date1, date2);
+    cout <<"--------------";
     cout <<endl<<"Suma Wydatkow:"<< fixed << setprecision(2)<<expencesInTotal(date1, date2)<<"zl."<<endl;
 };
 
