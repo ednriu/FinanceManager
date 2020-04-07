@@ -10,6 +10,7 @@ using namespace std;
 
 int main()
 {
+    int testowanie; //ta zmienna jest tylko do sprawdzenia funkcjonalnosci gita podczas scalania
     setlocale(LC_ALL,"");
     Menu menu;
     FinanceManager financeManager("users.xml");
