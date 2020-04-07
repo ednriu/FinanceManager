@@ -18,6 +18,7 @@ class ExpenceManager : private IncomeManager
     const string EXPENCE_FILE_NAME = "Expences";
     const int ID_OF_LOGGED_USER;
     vector<FinancialData> expences;
+    int idOfLastUser=0;
 
     void readAllExpencesFromFile();
 

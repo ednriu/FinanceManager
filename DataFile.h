@@ -15,7 +15,7 @@ class DataFile
 {
 public:
     void saveXmlFromVector(vector<FinancialData> &anyDate, string FileName);
-    vector<FinancialData> loadXmlToVector(string FileName, int idOfLoggedUser, bool loadAllUsersData);
+    vector<FinancialData> loadXmlToVector(string FileName, int idOfLoggedUser, bool loadAllUsersData, int &idOfLastUserInFile);
 };
 
 

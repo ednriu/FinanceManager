@@ -4,14 +4,14 @@
 void IncomeManager::readIncomesFromFileOfLoggedUser()
 {
     DataFile incomesFile;
-    incomes = incomesFile.loadXmlToVector(INCOME_FILE_NAME, ID_OF_LOGGED_USER, false);
+    incomes = incomesFile.loadXmlToVector(INCOME_FILE_NAME, ID_OF_LOGGED_USER, false, idOfLastUser);
     //cout <<"Wczytano Plik z Dochodami"<<endl;
 };
 
 void IncomeManager::readAllIncomesFromFile()
 {
     DataFile incomesFile;
-    incomes = incomesFile.loadXmlToVector(INCOME_FILE_NAME, ID_OF_LOGGED_USER, true);
+    incomes = incomesFile.loadXmlToVector(INCOME_FILE_NAME, ID_OF_LOGGED_USER, true,idOfLastUser);
     //cout <<"Wczytano Plik z Dochodami"<<endl;
 };
 
@@ -27,7 +27,7 @@ void IncomeManager::addIncome()
     system("cls");
     int dateTemp = dateInput();
     pieceOfData.setDate(dateTemp);
-    pieceOfData.setId(0);
+    pieceOfData.setId(idOfLastUser+1);
     pieceOfData.setUserId(ID_OF_LOGGED_USER);
     pieceOfData.setCategory(categoryInput());
     pieceOfData.setMoneyAmmount(moneyInput());

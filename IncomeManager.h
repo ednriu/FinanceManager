@@ -14,6 +14,7 @@ using namespace std;
 class IncomeManager
 {
     const string INCOME_FILE_NAME = "Incomes";
+    int idOfLastUser;
 
     void readAllIncomesFromFile();
     const int ID_OF_LOGGED_USER;

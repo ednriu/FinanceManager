@@ -24,12 +24,13 @@ void DataFile::saveXmlFromVector(vector<FinancialData> &anyData, string FileName
     //"E:\\NaukaCPP\\FinanceManager\\" +
 };
 
-vector<FinancialData> DataFile::loadXmlToVector(string FileName, int idOfLoggedUser, bool loadAllUsersData)
+vector<FinancialData> DataFile::loadXmlToVector(string FileName, int idOfLoggedUser, bool loadAllUsersData, int &idOfLastUserInFile)
 {
     CMarkup xml;
     DateAuxiliaryMethods dateAuxiliaryMethods;
     FinancialData individualFinancialRecord;
     vector<FinancialData> anyData;
+    idOfLastUserInFile = 0;
 
     xml.Load(FileName +".xml");
     //"E:\\NaukaCPP\\FinanceManager\\" +
@@ -83,6 +84,7 @@ vector<FinancialData> DataFile::loadXmlToVector(string FileName, int idOfLoggedU
             xml.FindElem( "DATE" );
             individualFinancialRecord.setDate(dateAuxiliaryMethods.convertStringToDataInteger(xml.GetData()));
 
+            idOfLastUserInFile++;
             anyData.push_back(individualFinancialRecord);
         }
 
