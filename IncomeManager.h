@@ -23,9 +23,8 @@ class IncomeManager
 
 protected:
 
-    int moneyInput();
+    float moneyInput();
     string categoryInput();
-    float getPLNfromInt(int moneyInt);
     void sortVectorWithFinancialDataAccordingToDate(vector<FinancialData> &vectorToBeSorted);
     float sumUpVectorWithFinancialDataWithinDataRange(vector<FinancialData> &vectorToBeSummed, int date1, int date2);
     void theLoopCoutsVectorOfFinancialDataWithinDates(vector<FinancialData> &vectorToBeCouted, int date1, int date2);

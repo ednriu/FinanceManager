@@ -15,7 +15,7 @@ void DataFile::saveXmlFromVector(vector<FinancialData> &anyData, string FileName
         xml.AddElem("ID",to_string((*it).getId()));
         xml.AddElem( "USER_ID", (*it).getUserId());
         xml.AddElem( "CATEGORY", (*it).getCategory());
-        xml.AddElem( "MONEY_AMMOUNT", (*it).getMoneyAmmount());
+        xml.AddElem( "MONEY_AMMOUNT", to_string((*it).getMoneyAmmount()));
         xml.AddElem( "DATE", dateAuxiliaryMethods.convertDataIntegerToString((*it).getDate()));
         xml.OutOfElem();
     }
@@ -58,7 +58,7 @@ vector<FinancialData> DataFile::loadXmlToVector(string FileName, int idOfLoggedU
                 individualFinancialRecord.setCategory(xml.GetData());
 
                 xml.FindElem( "MONEY_AMMOUNT" );
-                individualFinancialRecord.setMoneyAmmount(atoi(MCD_2PCSZ(xml.GetData())));
+                individualFinancialRecord.setMoneyAmmount(atof(MCD_2PCSZ(xml.GetData())));
 
                 xml.FindElem( "DATE" );
                 individualFinancialRecord.setDate(dateAuxiliaryMethods.convertStringToDataInteger(xml.GetData()));

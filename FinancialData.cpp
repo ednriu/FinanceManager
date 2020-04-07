@@ -13,7 +13,7 @@ void FinancialData::setCategory(string newCategory)
 {
     category = newCategory;
 };
-void FinancialData::setMoneyAmmount(int newMoneyAmmount)
+void FinancialData::setMoneyAmmount(float newMoneyAmmount)
 {
     moneyAmmount = newMoneyAmmount;
 };
@@ -33,8 +33,9 @@ string FinancialData::getCategory()
 {
     return category;
 };
-int FinancialData::getMoneyAmmount()
+float FinancialData::getMoneyAmmount()
 {
+    setprecision(2);
     return moneyAmmount;
 };
 int FinancialData::getDate()

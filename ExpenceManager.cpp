@@ -58,6 +58,7 @@ void ExpenceManager::showUsersExpenceWithinDataRange(int rangeLeft, int rangeRig
 
     sortVectorWithFinancialDataAccordingToDate(expences);
     theLoopCoutsVectorOfFinancialDataWithinDates(expences,date1, date2);
+    cout <<"--------------";
     cout <<endl<<"Suma Wydatkow:"<< fixed << setprecision(2)<<expencesInTotal(date1, date2)<<"zl."<<endl;
 };
 

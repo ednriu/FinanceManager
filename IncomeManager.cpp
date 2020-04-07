@@ -66,15 +66,15 @@ int IncomeManager::dateInput()
     }
 };
 
-int IncomeManager::moneyInput()
+float IncomeManager::moneyInput()
 {
     string ammount;
-    int ammountMultiplied;
+    float ammountToBeReturned;
 
     cout<<"Kwota:";
     cin>>ammount;
-    ammountMultiplied = (float)replaceCommaWithDot(ammount)*(float)100;
-    return ammountMultiplied;
+    ammountToBeReturned = replaceCommaWithDot(ammount);
+    return ammountToBeReturned;
 };
 
 string IncomeManager::categoryInput()
@@ -87,12 +87,6 @@ string IncomeManager::categoryInput()
     return category;
 };
 
-float IncomeManager::getPLNfromInt(int moneyInt)
-{
-    float moneyFloat;
-    moneyFloat = ((float)moneyInt/100);
-    return moneyFloat;
-};
 void IncomeManager::sortVectorWithFinancialDataAccordingToDate(vector<FinancialData> &vectorToBeSorted)
 {
     sort(vectorToBeSorted.begin(), vectorToBeSorted.end(), [](FinancialData& lhs, FinancialData& rhs) { //neecs attention: check why does not work with the Const
@@ -120,6 +114,7 @@ void IncomeManager::showUsersIncomeWithinDataRange(int rangeLeft, int rangeRight
 
     sortVectorWithFinancialDataAccordingToDate(incomes);
     theLoopCoutsVectorOfFinancialDataWithinDates(incomes,date1, date2);
+    cout <<"-------------";
     cout <<endl<<"Suma Wplywow:"<< fixed << setprecision(2)<<incomesInTotal(date1, date2)<<"zl."<<endl;
     //incomes.clear();
 };
@@ -131,7 +126,7 @@ float IncomeManager::sumUpVectorWithFinancialDataWithinDataRange(vector<Financia
 
     for(vector <FinancialData> :: iterator it = vectorToBeSummed.begin(); it != vectorToBeSummed.end(); ++it)
         {
-            if (((*it).getDate()>=date1)&&((*it).getDate()<=date2)) sumToBeReturned = sumToBeReturned+getPLNfromInt((*it).getMoneyAmmount());
+            if (((*it).getDate()>=date1)&&((*it).getDate()<=date2)) sumToBeReturned = sumToBeReturned+(*it).getMoneyAmmount();
         };
 
     return sumToBeReturned;
@@ -148,7 +143,7 @@ void IncomeManager::theLoopCoutsVectorOfFinancialDataWithinDates(vector<Financia
                 cout <<" -> ";
                 cout << (*it).getCategory();
                 cout<<" -> ";
-                cout << getPLNfromInt((*it).getMoneyAmmount());
+                cout << (*it).getMoneyAmmount();
                 cout<<"zl."<<endl;
            }
         }
