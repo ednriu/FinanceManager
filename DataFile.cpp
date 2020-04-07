@@ -81,7 +81,7 @@ vector<FinancialData> DataFile::loadXmlToVector(string FileName, int idOfLoggedU
             individualFinancialRecord.setMoneyAmmount(atoi(MCD_2PCSZ(xml.GetData())));
 
             xml.FindElem( "DATE" );
-            individualFinancialRecord.setDate(atoi(MCD_2PCSZ(xml.GetData())));
+            individualFinancialRecord.setDate(dateAuxiliaryMethods.convertStringToDataInteger(xml.GetData()));
 
             anyData.push_back(individualFinancialRecord);
         }
